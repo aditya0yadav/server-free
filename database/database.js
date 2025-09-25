@@ -1,5 +1,7 @@
-const sqlite3 = require('sqlite3').verbose();
-const path = require('path');
+import sqlite3pkg from 'sqlite3';
+const sqlite3 = sqlite3pkg.verbose();
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 class Database {
   constructor() {
@@ -8,7 +10,9 @@ class Database {
   }
 
   init() {
-    const dbPath = path.join(__dirname, 'rentwala.db');
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = path.dirname(__filename);
+  const dbPath = path.join(__dirname, 'rentwala.db');
     this.db = new sqlite3.Database(dbPath, (err) => {
       if (err) {
         console.error('Error opening database:', err.message);
@@ -236,4 +240,5 @@ class Database {
   }
 }
 
-module.exports = new Database();
+const databaseInstance = new Database();
+export default databaseInstance;

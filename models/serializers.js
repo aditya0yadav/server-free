@@ -189,7 +189,7 @@ class StatsSerializer {
   }
 }
 
-module.exports = {
+export {
   PropertySerializer,
   AgentSerializer,
   TestimonialSerializer,
